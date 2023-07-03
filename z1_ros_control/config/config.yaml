@@ -1,3 +1,0 @@
-udp_to_sdk:
-  sdk_ip: 127.0.0.1
-  controller_port: 8072

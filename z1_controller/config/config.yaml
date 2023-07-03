@@ -1,12 +1,15 @@
-udp_to_mcu:
+udp:
   mcu_ip: 192.168.123.110
-  controller_port: 8881
-
-udp_to_sdk:
-  sdk_ip: 127.0.0.1
-  controller_port: 8072
+  port_to_mcu: 8881
+  port_to_sdk: 8871
 
 collision:
+  # When a collision is detected, the robot arm will stop moving 
+  # until the user executes `clearErrors()` in SDK
   open: false
-  torque_threhold: 10.0
-  payload: 0.03
+  limitT: 10
+
+# If cmdCache is true, z1_controller while execute ArmCmd.shift_command() 
+# in unitree_arm_common.h when it doesn't receive a message from the SDK 
+# in a single communication
+cmdCache: false

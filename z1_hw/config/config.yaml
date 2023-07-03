@@ -1,0 +1,3 @@
+udp_to_controller:
+  controller_ip: 127.0.0.1
+  own_port: 8872

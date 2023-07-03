@@ -1,0 +1,12 @@
+<launch>
+  <arg name="UnitreeGripperYN" default="true"/>
+
+  <include file="$(find unitree_gazebo)/launch/z1.launch">
+    <arg name="UnitreeGripperYN" value="$(arg UnitreeGripperYN)"/>
+  </include>
+
+  <node pkg="z1_controller" type="z1_ctrl" name="z1_ctrl" output="screen">
+    <param name="communication" value="ROS"/>
+    <rosparam file="$(find z1_controller)/config/config.yaml"/>
+  </node>
+</launch>

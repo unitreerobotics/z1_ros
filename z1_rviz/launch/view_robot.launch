@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="rviz" type="rviz" name="rviz" respawn="false" output="screen"
+    args="-d $(find z1_rviz)/rviz/robot.rviz"/>
+</launch>

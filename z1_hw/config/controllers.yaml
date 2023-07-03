@@ -1,0 +1,31 @@
+joint_state_controller:
+  type:         joint_state_controller/JointStateController
+  publish_rate: 200
+
+z1_joint_traj_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - joint1  
+    - joint2  
+    - joint3  
+    - joint4  
+    - joint5  
+    - joint6
+  stop_trajectory_duration: 0.5
+  state_publish_rate: 200
+  action_monitor_rate: 200
+
+  constraints:
+    goal_time: 0.5
+    joint1:
+      goal: 0.01
+    joint2:
+      goal: 0.01
+    joint3:
+      goal: 0.01
+    joint4:
+      goal: 0.01
+    joint5:
+      goal: 0.01
+    joint6:
+      goal: 0.01

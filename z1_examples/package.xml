@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>z1_examples</name>
+  <version>0.1.0</version>
+  <description>The z1_examples package</description>
+  <maintainer email="laikago@unitree.cc">unitree</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>pluginlib</build_depend>
+  <build_depend>eigen</build_depend>
+  <build_depend>moveit_core</build_depend>
+  <build_depend>moveit_ros_planning</build_depend>
+  <build_depend>moveit_ros_planning_interface</build_depend>
+  <build_depend>moveit_ros_perception</build_depend>
+  <build_depend>interactive_markers</build_depend>
+  <build_depend>moveit_visual_tools</build_depend>
+  <build_depend>rviz_visual_tools</build_depend>
+
+  <exec_depend>pluginlib</exec_depend>
+  <exec_depend>moveit_core</exec_depend>
+  <exec_depend>moveit_commander</exec_depend>
+  <exec_depend>moveit_fake_controller_manager</exec_depend>
+  <exec_depend>moveit_ros_planning_interface</exec_depend>
+  <exec_depend>moveit_ros_perception</exec_depend>
+  <exec_depend>interactive_markers</exec_depend>
+  <exec_depend>moveit_visual_tools</exec_depend>
+  <exec_depend>rviz_visual_tools</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz</exec_depend>
+
+  <depend>z1_sdk</depend>
+</package>

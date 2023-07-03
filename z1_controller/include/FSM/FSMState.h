@@ -1,49 +1,60 @@
 #ifndef FSMSTATE_H
 #define FSMSTATE_H
 
-#include <string>
-#include <iostream>
-#include <unistd.h>
-#include "control/CtrlComponents.h"
-#include "common/math/mathTools.h"
-#include "common/utilities/timer.h"
 #include "FSM/BaseState.h"
+#include "cmdInterface/CtrlComponents.h"
+#include "sdk/unitree_arm_common.h"
+#include "UnitreeArmModule/math/robotics.h"
 
-class FSMState : public BaseState{
+namespace unitree = UNITREE_ARM_SDK;
+
+class FSMState : public BaseState
+{
 public:
-    FSMState(CtrlComponents *ctrlComp, ArmFSMStateName stateName, std::string stateNameString);
-    virtual ~FSMState(){}
+  FSMState(std::shared_ptr<CtrlComponents> ctrlComp, mode_t stateMode, std::string stateString);
+  virtual ~FSMState(){};
 
-    virtual void enter() = 0;
-    virtual void run() = 0;
-    virtual void exit() = 0;
-    virtual int checkChange(int cmd) {return (int)ArmFSMStateName::INVALID;}
-    bool _collisionTest();
-    
+  virtual void enter() = 0;
+  void run();
+  virtual void run_impl() = 0;
+  virtual void exit() = 0;
+  mode_t checkChange(mode_t cmd);
+  virtual mode_t checkChange_impl(mode_t cmd) { return 0; }
+
 protected:
-    void _armCtrl();
-    void _recordData();
-    Vec6 _postureToVec6(Posture posture);
-    void _tauFriction();
+  bool _collisionTest();
+  void _modifySDKState(UNITREE_ARM_SDK::ArmState& state);
+  Vec6 computeDeltaQ();
 
-    LowlevelCmd *_lowCmd;
-    LowlevelState *_lowState;
-    IOInterface *_ioInter;
-    ArmModel *_armModel;
+  std::shared_ptr<ArmModel> _arm;
+  std::shared_ptr<IOInterface> _ioInter;
+  std::shared_ptr<CmdSdk> _cmdSdk;
 
-    Vec6 _qPast, _qdPast, _q, _qd, _qdd, _tauForward;
-    double _gripperPos, _gripperW, _gripperTau;
+  std::shared_ptr<LowLevelCmd> _lowCmd;
+  std::shared_ptr<LowLevelState> _lowState;
+  
+  std::shared_ptr<FsmArmCmd> _fsmArmCmd;
+  std::shared_ptr<CtrlComponents> _ctrlComp;
 
-    CtrlComponents *_ctrlComp;
-    Vec6 _g, _tauCmd, _tauFric;
+  bool _enableSetUp = true;
+  bool _enableTearDown = true;
+  bool _enableCheckChange = true;
+
+  double _gripperQ;
 
 private:
+  void SetUp();
+  void TearDown();
 
-    uint _collisionCnt;
+  void _tauAddFriction();
+  void _gripperCtrl();
 
-    Vec6 _mLinearFriction;
-    Vec6 _mCoulombFriction;
+
+
+  Vec6 _mLinearFriction, _mCoulombFriction;
+
+  size_t _collisionCnt;
 
 };
 
-#endif  // FSMSTATE_H
+#endif // FSMSTATE_H

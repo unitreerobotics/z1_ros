@@ -1,28 +1,28 @@
-#ifndef STATE_TEACHREPEAT_H
-#define STATE_TEACHREPEAT_H
+#ifndef STATE_TEACH_REPEAT_H
+#define STATE_TEACH_REPEAT_H
 
 #include "FSM/FSMState.h"
-#include "trajectory/TrajectoryManager.h"
+#include "model/jointTraj.h"
 
-class State_TeachRepeat : public FSMState{
+class State_TeachRepeat : public FSMState
+{
 public:
-    State_TeachRepeat(CtrlComponents *ctrlComp);
-    ~State_TeachRepeat();
-    void enter();
-    void run();
-    void exit();
-    int checkChange(int cmd);
+  State_TeachRepeat(std::shared_ptr<CtrlComponents> ctrlComp, std::string directoryPath);
+  ~State_TeachRepeat(){};
+  void enter() override;
+  void run_impl() override;
+  void exit() override;
+  mode_t checkChange_impl(mode_t cmd) override;
 private:
-    bool _setCorrectly;
-    JointSpaceTraj *_toStartTraj;
-    bool _reachedStart = false;
-    bool _finishedRepeat = false;
-    size_t _index = 0;
-    size_t _indexPast;
-    Vec6 _trajStartQ, _trajStartQd;
-    double _trajStartGripperQ, _trajStartGripperQd;
+  std::string _directoryPath;
 
-    CSVTool *_csvFile;
+  bool _setCorrectly, _reachStart, _finihedRepeat;
+  CSVTool *_trajCSV;
+  std::shared_ptr<JointTraj> _toStartTraj;
+  
+  Vec6 _startQ;
+  double _startGripperQ, _deltaGripperStartQ;
+  size_t _index;
 };
 
-#endif  // STATE_TEACHREPEAT_H
+#endif // STATE_TEACH_REPEAT_H

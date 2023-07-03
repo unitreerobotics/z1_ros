@@ -1,24 +1,23 @@
-#ifndef STATETEACH_H
-#define STATETEACH_H
+#ifndef STATE_TEACH_H
+#define STATE_TEACH_H
 
 #include "FSM/FSMState.h"
 
-class State_Teach : public FSMState{
+class State_Teach : public FSMState
+{
 public:
-    State_Teach(CtrlComponents *ctrlComp);
-    ~State_Teach();
-    void enter();
-    void run();
-    void exit();
-    int checkChange(int cmd);
+  State_Teach(std::shared_ptr<CtrlComponents> ctrlComp, std::string directoryPath);
+  ~State_Teach(){};
+  void enter() override;
+  void run_impl() override;
+  void exit() override;
+  mode_t checkChange_impl(mode_t cmd) override;
 private:
-    CSVTool *_trajCSV;
-    size_t _stateID = 0;
+  std::string _directoryPath;
 
-    Vec6 _KdDiag;
-    Vec6 _kpForStable;
-    Mat6 _Kd;
-    double _errorBias;
+  CSVTool* _trajCSV;
+  size_t _stateID;
+  double _errorBias{0.01};
 };
 
-#endif  // STATETEACH_H
+#endif // STATE_TEACH_H

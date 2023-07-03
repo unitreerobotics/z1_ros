@@ -1,0 +1,59 @@
+## Setup
+
+### Dependencies
+
++ gcc-7 or newer
++ libboost-all-dev
++ libeigen3-dev
++ liburdfdom-dev
+
+```shell
+sudo apt install -y libboost-all-dev libeigen3-dev liburdfdom-dev
+```
++ [pinocchio](https://stack-of-tasks.github.io/pinocchio/download.html)
+
+If you want to install python interface, please check the offical page.
+```
+# Install pinocchio
+git clone --recursive https://github.com/stack-of-tasks/pinocchio
+cd pinocchio && mkdir build && cd build
+cmake .. \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX=/usr/local \
+  -DBUILD_PYTHON_INTERFACE=OFF \
+  -DBUILD_TESTING=OFF 
+
+make
+sudo make install
+```
+
+Configure Path, add those lines to `~/.bashrc`
+```
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+```
+
++ [pybind11](https://github.com/pybind/pybind11) 
+
+```bash
+# Install pybind11
+git clone https://github.com/pybind/pybind11.git
+cd pybind11
+mkdir build && cd build
+cmake .. -DPYBIND11_TEST=OFF
+make -j
+sudo make install
+```
+
+### catkin_ws
+
+```bash
+mkdir -p ~/z1_ws/src
+cd ~/z1_ws/src
+git clone --recursive https://github.com/unitreerobotics/z1_ros.git
+cd ..
+rosdep install --from-paths src --ignore-src -yr
+catkin_make
+source devel/setup.bash
+```

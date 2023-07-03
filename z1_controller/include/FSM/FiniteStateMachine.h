@@ -1,28 +1,27 @@
-#ifndef FSM_H
-#define FSM_H
+#ifndef _FINITE_STATE_MACHINE_H
+#define _FINITE_STATE_MACHINE_H
 
-#include <vector>
 #include "FSM/FSMState.h"
-#include "common/utilities/loop.h"
-#include "control/CtrlComponents.h"
+#include <vector>
+#include "UnitreeArmModule/loop/loop.h"
 
-class FiniteStateMachine{
+class FiniteStateMachine
+{
 public:
-    FiniteStateMachine(std::vector<FSMState*> states, CtrlComponents *ctrlComp);
-    virtual ~FiniteStateMachine();
+  FiniteStateMachine( std::vector<std::shared_ptr<FSMState>> states, 
+                      std::shared_ptr<CtrlComponents> ctrlComp);
+  ~FiniteStateMachine();
 
 private:
-    void _run();
-    std::vector<FSMState*> _states;
+  void _run();
+  std::vector<std::shared_ptr<FSMState>> _states;
+  FSMMode _mode;
+  std::shared_ptr<FSMState> _currentState;
+  std::shared_ptr<FSMState> _nextState;
+  mode_t _nextStateNum;
 
-    FSMMode _mode;
-    bool _running;
-    FSMState* _currentState;
-    FSMState* _nextState;
-    int _nextStateEnum;
-
-    CtrlComponents *_ctrlComp;
-    LoopFunc *_runThread;
+  std::shared_ptr<CtrlComponents> _ctrlComp;
+  std::unique_ptr<Loop> _runThread;
 };
 
-#endif  // FSM_H
+#endif // _FINITE_STATE_MACHINE_H

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>z1_sdk</name>
+  <version>0.1.0</version>
+  <description>The z1_sdk package</description>
+  <maintainer email="laikago@unitree.cc">unitree</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

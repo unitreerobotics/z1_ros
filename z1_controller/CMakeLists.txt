@@ -1,49 +1,37 @@
 cmake_minimum_required(VERSION 3.0)
-project(z1_controller LANGUAGES CXX)
-add_definitions(-std=c++14)
-set(PACKAGE_NAME z1_controller)
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O3")
+project(z1_controller
+  VERSION 3.0.0
+  LANGUAGES CXX)
 
-find_package(gazebo REQUIRED)
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O3 -std=c++14 -DNDEBUG -fPIC")
+
+## Dependencies
+find_package(Boost REQUIRED)
+find_package(pinocchio REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
-    controller_manager
-    genmsg
-    joint_state_controller
-    robot_state_publisher
-    roscpp
-    gazebo_ros
-    std_msgs
-    tf
-    geometry_msgs
+  roscpp
+  genmsg
+  std_msgs
+  unitree_legged_msgs
+  roslib
 )
 
 catkin_package(
-    CATKIN_DEPENDS 
-)
+  CATKIN_DEPENDS unitree_legged_msgs roslib
+)  
 
 include_directories(
-    ${catkin_INCLUDE_DIRS}
-    ${GAZEBO_INCLUDE_DIRS}
-)
-
-link_directories(
-    ${GAZEBO_LIBRARY_DIRS}
-)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
-
-find_package(Eigen3 REQUIRED)
-find_package(Boost REQUIRED)
-include_directories(
-    include
-    ${Boost_INCLUDE_DIRS}
-    ${Eigen3_INCLUDE_DIRS}
+  ${pinocchio_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
+  include
+  sim
 )
 
 link_directories(lib)
-
-add_executable(z1_control_real src/real_control.cpp)
-target_link_libraries(z1_control_real ${catkin_LIBRARIES} Z1_UDP_Linux64)
-
-add_executable(z1_control_sim src/sim_control.cpp)
-target_link_libraries(z1_control_sim ${catkin_LIBRARIES} Z1_ROS_Linux64)
+add_executable(z1_ctrl main.cpp sim/IOROS.cpp)
+target_link_libraries(z1_ctrl
+  ${catkin_LIBRARIES}
+  UnitreeArm_${CMAKE_SYSTEM_PROCESSOR}
+  pinocchio::pinocchio
+)

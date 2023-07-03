@@ -2,31 +2,29 @@
 #define BASESTATE_H
 
 #include <string>
-#include "common/enumClass.h"
+
+enum class FSMMode{
+    NORMAL,
+    CHANGE
+};
 
 class BaseState{
 public:
-    BaseState(int stateNameEnum, std::string stateNameString)
+    BaseState(mode_t stateNameEnum, std::string stateNameString)
         : _stateNameEnum(stateNameEnum), _stateNameString(stateNameString){}
-    virtual ~BaseState(){};
+    virtual ~BaseState() = default;
 
     virtual void enter() = 0;
-    virtual void run() = 0;
+    virtual void run_impl() = 0;
     virtual void exit() = 0;
-    virtual int checkChange(int cmd) = 0;
+    virtual mode_t checkChange(mode_t mode) = 0;
 
-    bool isState(int stateEnum){
-        if(_stateNameEnum == stateEnum){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    std::string getStateName(){return _stateNameString;}
-    int getStateNameEnum(){return _stateNameEnum;};
+    bool isState(mode_t stateEnum) { return _stateNameEnum == stateEnum; }
+    std::string getStateName() { return _stateNameString; }
+    mode_t getStateNameEnum() { return _stateNameEnum; };
 protected:
-    int _stateNameEnum;
+    mode_t _stateNameEnum;
     std::string _stateNameString;
 };
 
-#endif
+#endif // BASESTATE_H

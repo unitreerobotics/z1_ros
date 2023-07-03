@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="z1_controller" type="z1_ctrl" name="z1_ctrl" output="screen">
+    <param name="communication" value="UDP"/>
+    <param name="z1_urdf_path" value="$(find z1_description)/xacro/z1.urdf"/>
+    <rosparam file="$(find z1_controller)/config/config.yaml"/>
+  </node>
+</launch>

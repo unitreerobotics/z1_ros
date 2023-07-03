@@ -1,0 +1,15 @@
+<launch>
+  <arg name="UnitreeGripper" default="true"/>
+  <arg name="controllers" default="joint_state_controller z1_joint_traj_controller" />
+
+  <rosparam file="$(find z1_hw)/config/controllers.yaml" command="load"/>
+  
+  <node name="ros_control_controller_spawner" pkg="controller_manager" type="spawner" 
+    respawn="false" output="screen" args="$(arg controllers)"/>
+
+  <node type="z1_hw_node" pkg="z1_hw" name="z1_hw_node" output="screen">
+    <param name="UnitreeGripperYN" value="$(arg UnitreeGripper)"/>
+    <rosparam file="$(find z1_controller)/config/config.yaml"/>
+    <rosparam file="$(find z1_hw)/config/config.yaml"/>
+  </node>
+</launch>
