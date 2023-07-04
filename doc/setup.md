@@ -9,7 +9,18 @@
 
 ```shell
 sudo apt install -y libboost-all-dev libeigen3-dev liburdfdom-dev
+sudo ln -s /usr/include/eigen3/Eigen /usr/local/include/Eigen
+sudo ln -s /usr/include/eigen3/unsupported /usr/local/include/unsupported
 ```
++ moveit
+
+① build from source: [moveit noetic](https://ros-planning.github.io/moveit_tutorials/doc/getting_started/getting_started.html)
+② Binary install
+```
+sudo apt install -y ros-noetic-moveit-*
+sudo apt installl -y ros-noetic-joint-trajectory-controller ros-noetic-trac-ik-kinematics-plugin
+```
+
 + [pinocchio](https://stack-of-tasks.github.io/pinocchio/download.html)
 
 If you want to install python interface, please check the offical page.
@@ -35,6 +46,8 @@ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
 ```
 
 + [pybind11](https://github.com/pybind/pybind11) 
+
+If you want to use python interface, please execute the following commands.
 
 ```bash
 # Install pybind11

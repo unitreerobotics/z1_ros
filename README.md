@@ -16,6 +16,7 @@
 Welcome to the ROS driver for the Unitree Z1!
 
 [Setup](doc/setup.md) - Configure the environment
+
 [Usage](doc/usage.md) - Contrl the z1 arm
 
 **Attention:** The `z1_controller` package in `z1_ros` is different from [https://github.com/unitreerobotics/z1_controller](https://github.com/unitreerobotics/z1_controller), and [https://github.com/unitreerobotics/z1_sdk](https://github.com/unitreerobotics/z1_sdk) is not compatible with this package.
