@@ -15,4 +15,4 @@ Current version temporarily dedicated to ROS driver and communicates with SDK vi
 ### State
 
 + For the time being only examples of  `joint control` and `lowcmd` control are available, other interfaces will follow.
-+ The joint gain coefficients in lowcmd (25.6, 0.0128) thar were in [z1_controller_V2](https://dev-z1.unitree.com/use/introduction.html) have been removed and are noe standard joint gains.
++ The joint gain coefficients in lowcmd (25.6, 0.0128) thar were in [z1_controller_V2](https://dev-z1.unitree.com/use/introduction.html) have been removed and are now standard joint gains.
