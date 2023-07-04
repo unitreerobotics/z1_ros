@@ -18,7 +18,7 @@ sudo ln -s /usr/include/eigen3/unsupported /usr/local/include/unsupported
 ② Binary install
 ```
 sudo apt install -y ros-noetic-moveit-*
-sudo apt installl -y ros-noetic-joint-trajectory-controller ros-noetic-trac-ik-kinematics-plugin
+sudo apt install -y ros-noetic-joint-trajectory-controller ros-noetic-trac-ik-kinematics-plugin
 ```
 
 + [pinocchio](https://stack-of-tasks.github.io/pinocchio/download.html)
