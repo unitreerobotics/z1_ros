@@ -34,7 +34,7 @@ An example MoveIt configuration is included in the *z1_moveit_config* package.
 There are many ways to interact with MoveIt.  The most interactive way is to use RVIZ.  RVIZ can be started with the above launch scripts using the launch parameter, or can be started after using:
 
 ```bash
-roslaunch z1_viz view_robot.launch
+roslaunch z1_rviz view_robot.launch
 ```
 
 ![rviz_moveit](image/rviz_moveit.png)
