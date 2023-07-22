@@ -44,7 +44,7 @@ roslaunch z1_viz view_robot.launch
 The gripper is controlled using an action server. To send a gripper position, publish to the goal topic and set the command/position value to the angle you want the gripper to open to. Zero is closed, and negative values are open. You can monitor the status of the action through the feedback or result topics
 
 ```bash
-rosrun z1_examples gripper_ctrl -1
+rosrun z1_examples ros_gripper_ctrl -1
 ```
 
 ## 2. Run with udp
