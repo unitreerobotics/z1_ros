@@ -5,7 +5,7 @@
 ### Real Robot Arm
 
 ```bash
-roslaunch z1_bingup real_arm.launch rivz:=true
+roslaunch z1_bringup real_arm.launch rivz:=true
 ```
 
 ### Simulated Robot Arm
