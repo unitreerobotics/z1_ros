@@ -5,7 +5,7 @@
 ### Real Robot Arm
 
 ```bash
-roslaunch z1_bingup real_arm.launch rivz:=true
+roslaunch z1_bringup real_arm.launch rviz:=true
 ```
 
 ### Simulated Robot Arm
@@ -13,7 +13,7 @@ roslaunch z1_bingup real_arm.launch rivz:=true
 If you aren't using a real robot arm, you can simulate an arm in Gazebo.
 
 ```bash
-roslaunch z1_bringup sim_arm.launch UnitreeGripperYN:=true rivz:=true
+roslaunch z1_bringup sim_arm.launch UnitreeGripperYN:=true rviz:=true
 ```
 
 ![gazebo](image/gazebo.png)
