@@ -17,6 +17,17 @@ sudo ln -s /usr/include/eigen3/unsupported /usr/local/include/unsupported
 ① build from source: [moveit noetic](https://ros-planning.github.io/moveit_tutorials/doc/getting_started/getting_started.html)
 ② Binary install
 ```
+# install noetic
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt install curl # if you haven't already installed curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+sudo apt update
+sudo apt install ros-noetic-desktop-full
+sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+sudo rosdep init
+sudo apt install ros-noetic-catkin python3-catkin-tools
+sudo apt install python3-wstool
+
 sudo apt install -y ros-noetic-moveit-*
 sudo apt install -y ros-noetic-joint-trajectory-controller ros-noetic-trac-ik-kinematics-plugin
 ```
@@ -66,6 +77,9 @@ mkdir -p ~/z1_ws/src
 cd ~/z1_ws/src
 git clone --recursive https://github.com/unitreerobotics/z1_ros.git
 cd ..
+
+
+source /opt/ros/noetic/setup.bash
 rosdep install --from-paths src --ignore-src -yr
 catkin_make
 source devel/setup.bash
