@@ -2,6 +2,13 @@
 
 ## 1. Run with moveit
 
+### Source Noetic if not in .bashrc
+```bash
+source /opt/ros/noetic/setup.bash
+source  ~/z1_ws/devel/setup.bash
+```
+
+
 ### Real Robot Arm
 
 ```bash
