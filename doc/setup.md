@@ -66,7 +66,8 @@ mkdir -p ~/z1_ws/src
 cd ~/z1_ws/src
 git clone --recursive https://github.com/unitreerobotics/z1_ros.git
 cd ..
-rosdep install --from-paths src --ignore-src -yr
+
+rosdep install --from-paths src --ignore-src -yr --rosdistro noetic
 catkin_make
 source devel/setup.bash
 ```

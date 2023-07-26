@@ -2,10 +2,16 @@
 
 ## 1. Run with moveit
 
+### Source Noetic if not in .bashrc
+```bash
+source /opt/ros/noetic/setup.bash
+source ~/z1_ws/devel/setup.bash
+```
+
 ### Real Robot Arm
 
 ```bash
-roslaunch z1_bingup real_arm.launch rivz:=true
+roslaunch z1_bringup real_arm.launch rviz:=true
 ```
 
 ### Simulated Robot Arm
@@ -13,7 +19,7 @@ roslaunch z1_bingup real_arm.launch rivz:=true
 If you aren't using a real robot arm, you can simulate an arm in Gazebo.
 
 ```bash
-roslaunch z1_bringup sim_arm.launch UnitreeGripperYN:=true rivz:=true
+roslaunch z1_bringup sim_arm.launch UnitreeGripperYN:=true rviz:=true
 ```
 
 ![gazebo](image/gazebo.png)
@@ -34,7 +40,7 @@ An example MoveIt configuration is included in the *z1_moveit_config* package.
 There are many ways to interact with MoveIt.  The most interactive way is to use RVIZ.  RVIZ can be started with the above launch scripts using the launch parameter, or can be started after using:
 
 ```bash
-roslaunch z1_viz view_robot.launch
+roslaunch z1_rviz view_robot.launch
 ```
 
 ![rviz_moveit](image/rviz_moveit.png)
@@ -44,7 +50,7 @@ roslaunch z1_viz view_robot.launch
 The gripper is controlled using an action server. To send a gripper position, publish to the goal topic and set the command/position value to the angle you want the gripper to open to. Zero is closed, and negative values are open. You can monitor the status of the action through the feedback or result topics
 
 ```bash
-rosrun z1_examples gripper_ctrl -1
+rosrun z1_examples ros_gripper_ctrl -1
 ```
 
 ## 2. Run with udp
