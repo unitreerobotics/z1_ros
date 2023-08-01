@@ -17,7 +17,7 @@ private:
 
   CSVTool* _trajCSV;
   size_t _stateID;
-  double _errorBias{0.01};
+  double _errorBias{0.001};
 };
 
 #endif // STATE_TEACH_H

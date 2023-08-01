@@ -25,9 +25,11 @@ public:
   std::array<bool, UNITREE_ARM_SDK::ErrorNum> errors{};
   std::array<std::array<bool, 8>, 8> motor_errors{};
   
+  std::vector<double> qFiltered;
   std::vector<double> dqFiltered;
 
   Vec6 getQ();
+  Vec6 getQFiltered();
   Vec6 getDq();
   Vec6 getDqFiltered();
   Vec6 getTau();
@@ -38,6 +40,7 @@ public:
 
   bool has_motor_errors() const;
 private:
+  LPFilter *qFilter;
   LPFilter *dqFilter;
 
   std::array<int, 8> _isMotorConnectedCnt{};

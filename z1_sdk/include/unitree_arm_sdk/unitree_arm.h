@@ -21,7 +21,7 @@ public:
    */
   UnitreeArm(std::string controllerIP, uint ownPort = 0, uint toPort = 8871)
   {
-    armCmd.version = {3, 0, 0};
+    armCmd.version = {3, 0, 1};
     udp_ = std::make_shared<UdpPort>("z1", ownPort, controllerIP, toPort, 20);
     udp_->setCRC32(true);
   }

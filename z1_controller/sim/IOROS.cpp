@@ -5,7 +5,7 @@
 
 IOROS::IOROS(){
     std::cout << "The control interface for ROS Gazebo simulation" << std::endl;
-    
+
     /* start subscriber */
     _initRecv();
     ros::AsyncSpinner subSpinner(1); // one threads
@@ -20,6 +20,8 @@ IOROS::IOROS(){
     });
     
     initialized_ = true;
+
+    _nm.param<bool>("z1_ctrl/UnitreeGripperYN", hasGripper, false);
 }
 
 bool IOROS::isConnected()
@@ -152,7 +154,6 @@ void IOROS::_joint05Callback(const unitree_legged_msgs::MotorState& msg){
 }
 
 void IOROS::_gripperCallback(const unitree_legged_msgs::MotorState& msg){
-    hasGripper = true;
     _gripperState.mode = msg.mode;
     _gripperState.q = msg.q;
     _gripperState.dq = msg.dq;
