@@ -68,6 +68,8 @@ git clone --recursive https://github.com/unitreerobotics/z1_ros.git
 cd ..
 
 rosdep install --from-paths src --ignore-src -yr --rosdistro noetic
+# compile unitree_legged_msgs first
+catkin_make --pkg unitree_legged_msgs
 catkin_make
 source devel/setup.bash
 ```
