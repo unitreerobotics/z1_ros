@@ -7,9 +7,11 @@ set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O3 -std=c++14 -DNDEBUG -fPIC -pthread")
 
 ## Dependencies
 find_package(Boost REQUIRED)
-
+find_package(Eigen3 REQUIRED)
+message(${EIGEN3_INCLUDE_DIR})
 include_directories(
   ${Boost_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
   include
 )
 
