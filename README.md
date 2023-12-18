@@ -22,3 +22,15 @@ Welcome to the ROS driver for the Unitree Z1!
 **Attention:** The `z1_controller` package in `z1_ros` is different from [https://github.com/unitreerobotics/z1_controller](https://github.com/unitreerobotics/z1_controller), and [https://github.com/unitreerobotics/z1_sdk](https://github.com/unitreerobotics/z1_sdk) is not compatible with this package.
 
 See details [z1_controller](doc/controller.md)
+
+
+## BRL Notes
+### Simulated Robot Arm
+Z1_README: [https://dev-z1.unitree.com/brief/installation.html](https://dev-z1.unitree.com/brief/installation.html)
+
+If you aren't using a real robot arm, you can simulate an arm in Gazebo.
+
+```bash
+roslaunch z1_bringup sim_arm.launch UnitreeGripperYN:=false RealSense:=true rviz:=true
+
+```
