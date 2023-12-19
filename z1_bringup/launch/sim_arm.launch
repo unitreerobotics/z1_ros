@@ -12,6 +12,10 @@
     <arg name="RealSense" value="$(arg RealSense)"/>
   </include>
 
+  <group if="$(arg RealSense)">
+      <node name="image_proc" pkg="image_proc" type="image_proc" ns="camera/color"/>
+  </group>
+
   <group if="$(arg ros_controller)">
     <include file="$(find z1_hw)/launch/z1_hw.launch">
       <arg name="UnitreeGripper" value="$(arg UnitreeGripperYN)"/>
