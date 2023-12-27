@@ -6,7 +6,7 @@ udp:
 collision:
   # When a collision is detected, the robot arm will stop moving 
   # until the user executes `clearErrors()` in SDK
-  open: false
+  open: true
   limitT: 10
 
 # If cmdCache is true, z1_controller while execute ArmCmd.shift_command() 

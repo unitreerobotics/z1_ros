@@ -32,5 +32,6 @@ If you aren't using a real robot arm, you can simulate an arm in Gazebo.
 
 ```bash
 roslaunch z1_bringup sim_arm.launch UnitreeGripperYN:=false RealSense:=true rviz:=true
+roslaunch z1_bringup real_arm.launch rviz:=true UnitreeGripperYN:=false RealSense:=false
 
 ```
