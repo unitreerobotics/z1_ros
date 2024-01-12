@@ -1,10 +1,10 @@
 <launch>
   <arg name="UnitreeGripperYN" default="true"/>
-  <arg name="RealSense" default="true"/>
+  <!-- <arg name="RealSense" default="true"/> -->
 
   <include file="$(find unitree_gazebo)/launch/z1.launch">
     <arg name="UnitreeGripperYN" value="$(arg UnitreeGripperYN)"/>
-    <arg name="RealSense" value="$(arg RealSense)"/>
+    <!-- <arg name="RealSense" value="$(arg RealSense)"/> -->
   </include>
 
   <node pkg="z1_controller" type="z1_ctrl" name="z1_ctrl" output="screen">

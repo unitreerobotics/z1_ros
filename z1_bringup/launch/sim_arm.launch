@@ -9,7 +9,7 @@
 
   <include file="$(find z1_bringup)/launch/sim_ctrl.launch" if="$(arg controller)">
     <arg name="UnitreeGripperYN" value="$(arg UnitreeGripperYN)"/>
-    <arg name="RealSense" value="$(arg RealSense)"/>
+    <!-- <arg name="RealSense" value="$(arg RealSense)"/> -->
   </include>
 
   <group if="$(arg RealSense)">
