@@ -18,7 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 catkin_package(
   CATKIN_DEPENDS unitree_legged_msgs roslib
-)  
+)
 
 include_directories(
   ${pinocchio_INCLUDE_DIRS}
@@ -30,6 +30,7 @@ include_directories(
 
 link_directories(lib)
 add_executable(z1_ctrl main.cpp sim/IOROS.cpp)
+add_dependencies(z1_ctrl unitree_legged_msgs_generate_messages_cpp)
 target_link_libraries(z1_ctrl
   ${catkin_LIBRARIES}
   UnitreeArm_${CMAKE_SYSTEM_PROCESSOR}
